@@ -1,4 +1,6 @@
 import { LitElement, html, css } from "lit";
+import { DDDSuper } from "@lrnwebcomponents/d-d-d/d-d-d.js";
+
 
 export class NasaImage extends LitElement {
 

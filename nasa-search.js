@@ -1,4 +1,6 @@
 import { LitElement, html, css } from 'lit';
+import { DDDSuper } from "@lrnwebcomponents/d-d-d/d-d-d.js";
+
 import "./nasa-image.js";
 export class NasaSearch extends LitElement {
   static get properties() {
