@@ -16,11 +16,12 @@ export class NasaSearch extends LitElement {
     return css`
       :host {
         display: block;
+        background-color: var(--ddd-theme-default-pughBlue);
       }
       :host([loading]) .results {
         opacity: 0.1;
         visibility: hidden;
-        height: 1px;
+        height: var(--ddd-ls-72-lg);
       }
       .results {
         visibility: visible;
@@ -28,24 +29,39 @@ export class NasaSearch extends LitElement {
         opacity: 1;
         transition-delay: .5s;
         transition: .5s all ease-in-out;
+        display:flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        background-color: var(--ddd-theme-default-pughBlue);
+        
+
       }
 
       details {
-        margin: 16px;
-        padding: 16px;
-        background-color: blue;
+        margin: var(--ddd-spacing-4);
+        padding: var(--ddd-spacing-4);
+        background-color: var(--ddd-theme-default-nittanyNavy);
+        border-radius: var(--ddd-spacing-2);
       }
       summary {
-        font-size: 24px;
-        padding: 8px;
-        color: white;
-        font-size: 42px;
+        font-size: var(--ddd-spacing-6);
+        padding: var(--ddd-spacing-2);
+        color: var(--ddd-theme-default-pughBlue);
+        font-size: var(--ddd-spacing-10);
+        text-align: center;
+        font-family: var(--ddd-font-secondary);
+        
       }
       input {
-        font-size: 20px;
-        line-height: 40px;
+        font-size: var( --ddd-spacing-5);
+        line-height: var(--ddd-spacing-10);
         width: 100%;
+        border-radius: var(--ddd-spacing-2);
+        padding-left: var(--ddd-spacing-2);
+        
       }
+
+      
     `;
   }
 
@@ -60,18 +76,30 @@ export class NasaSearch extends LitElement {
   render() {
     return html`
     <h2>${this.title}</h2>
+
     <details open>
-      <summary>Search inputs</summary>
+      <summary>Search NASA Images</summary>
       <div>
-        <input id="input" placeholder="Search NASA images" @input="${this.inputChanged}" />
+        <input id="input" placeholder="Search" @input="${this.inputChanged}" />
       </div>
     </details>
+    
     <div class="results">
+      
+  
+    
       ${this.items.map((item, index) => html`
+        <a href="${item.links[0].href}" target="_blank" tabindex="0">
+        
+
       <nasa-image
         source="${item.links[0].href}"
         title="${item.data[0].title}"
+        alt="${item.data[0].description}"
+        owner="${item.data[0].secondary_creator}"
+
       ></nasa-image>
+      </a>
       `)}
     </div>
     `;
